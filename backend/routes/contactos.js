@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controller/userController');
+const contacController = require('../controller/contactosController');
 
 
-router.get('/', userController.ObtenerTodosLosContactos);// consultas gnral
-router.get('/:id',userController.ObtenerContactoPorId);//consulta por id, especifica
-router.post('/',userController.crearContacto);//crear user
-router.put('/:id',userController.ActualizarContacto);//actualizar/modificar user
-router.delete('/:id',userController.BorrarContacto);// borrar user
+router.get('/', contacController.ObtenerTodosLosContactos);// consultas gnral
+router.get('/:id',contacController.ObtenerContactoPorId);//consulta por id, especifica
+router.post('/',contacController.crearContacto);//crear user
+router.put('/:id',contacController.ActualizarContacto);//actualizar/modificar user
+router.delete('/:id',contacController.BorrarContacto);// borrar user
 
 
 
