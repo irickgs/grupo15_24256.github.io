@@ -2,7 +2,7 @@ const db = require('../db/db');
 const path = require('path');
 
 
-const ObtenerTodosLosUsuarios = (req, res) => {
+const ObtenerTodosLosContactos = (req, res) => {
     const sql = 'SELECT * FROM contactos';//devuelve un array de objetos
 
     db.query(sql, (err, results) => {
@@ -13,7 +13,7 @@ const ObtenerTodosLosUsuarios = (req, res) => {
     });
 }
 
-const ObtenerUsuarioPorId = (req, res) => {
+const ObtenerContactoPorId = (req, res) => {
     const { id } = req.params;//destructuring de un objeto que tiene atributo id
     const sql = 'SELECT * FROM contactos WHERE id_contacto = ?'
 
@@ -26,7 +26,7 @@ const ObtenerUsuarioPorId = (req, res) => {
 
 }
 
-const crearUsuario = (req, res) => {
+const crearContacto = (req, res) => {
     const { asunto, nombre, fk_id_ciudad, email, mensaje, acepta } = req.body;
     console.log('Datos recibidos:', req.body);
     //const aceptaValor = acepta === '1' ? 1 : 0;
@@ -38,7 +38,7 @@ const crearUsuario = (req, res) => {
 
         res.json(
             {
-                mensaje: "Usuario Creado con EXITO",
+                mensaje: "Contacto Creado con EXITO",
                 idUsuario: result.insertId // insertId es un atributo que tiene el objeto result que devuelve el id del usuario que se acaba de crear
             });
 
@@ -47,17 +47,17 @@ const crearUsuario = (req, res) => {
 
 }
 
-const ActualizarUsuario = (req, res) => {
+const ActualizarContacto = (req, res) => {
     const { id } = req.params;
-    const { nombre, apellido, mail } = req.body;
+    const { nombre, email } = req.body;
 
-    const sql = 'UPDATE usuarios_db SET nombre = ?, apellido = ? , mail = ? WHERE id = ?'
+    const sql = 'UPDATE contactos SET nombre = ?, email = ? WHERE id_contacto = ?'
 
-    db.query(sql, [nombre, apellido, mail, id], (err, result) => {
+    db.query(sql, [nombre, email, id], (err, result) => {
         if (err) throw err;
 
         res.json({
-            mensaje: "Usuario EDITADO"
+            mensaje: "Contacto EDITADO"
 
         })
     });
@@ -65,17 +65,17 @@ const ActualizarUsuario = (req, res) => {
 
 
 
-const BorrarUsuario = (req, res) => {
+const BorrarContacto = (req, res) => {
     const { id } = req.params;
 
-    const sql = 'DELETE FROM usuarios_db WHERE id = ?';
+    const sql = 'DELETE FROM contactos WHERE id_contacto = ?';
 
     db.query(sql, [id], (err, result) => {
         if (err) throw err;
 
         res.json(
             {
-                mensaje: "usuario ELIMINADO con EXITO"
+                mensaje: "Contacto ELIMINADO con EXITO"
             })
 
     });
@@ -84,9 +84,9 @@ const BorrarUsuario = (req, res) => {
 
 module.exports =
 {
-    ObtenerTodosLosUsuarios,
-    ObtenerUsuarioPorId,
-    crearUsuario,
-    ActualizarUsuario,
-    BorrarUsuario
+    ObtenerTodosLosContactos,
+    ObtenerContactoPorId,
+    crearContacto,
+    ActualizarContacto,
+    BorrarContacto
 }
