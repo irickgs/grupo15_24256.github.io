@@ -5,7 +5,7 @@ const app = express();
 let port = 3000;
 const path = require('path');// para trabajar con rutas de archivos y directorios
 
-const usuariosRouter = require('./routes/usuarios');
+const usuariosRouter = require('./routes/contactos');
 const cors = require('cors');
 
 //app.use(express.static('public'));
