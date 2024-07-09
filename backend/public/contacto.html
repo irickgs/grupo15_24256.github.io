@@ -44,11 +44,16 @@
     <main>
         <section id="form-wrapper">
             <h3 class="registroTitulo , mb-4">Contacto</h3>
-            <form action="/usuarios" id="form-contacto" method="post" novalidate>
+            <form action="/contactos" id="form-contacto" method="post" novalidate>
                 <div class="form-container">
                     <div class="mb-3">
-                        <label for="asunto"> Introduce un asunto</label><br>
-                        <input class="form-control" type="text" id="asunto" name="asunto" placeholder="Asunto" required>
+                        <label for="fk_id_asunto">Seleccioná un asunto </label><br>
+                        <select name="fk_id_asunto" id="fk_id_asunto">
+                            <option value="1">Consulta</option>
+                            <option value="2">Mensaje</option>
+                            <option value="3">Problema</option>
+                            <option value="4">Otro</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="name">Nombre</label><br>

@@ -59,7 +59,20 @@ const connection = mySql.createConnection(
                     nombre VARCHAR(255) NOT NULL
                 );
                 
-                CREATE TABLE IF NOT EXISTS mensajes (
+                CREATE TABLE IF NOT EXISTS contactos (
+                    id_contacto INT AUTO_INCREMENT PRIMARY KEY,
+                    fk_id_asunto INT,
+                    nombre VARCHAR(255) NOT NULL,
+                    fk_id_ciudad INT,
+                    email VARCHAR(255) NOT NULL UNIQUE,
+                    mensaje TEXT NOT NULL,
+                    acepta BOOLEAN NOT NULL,
+                    creado DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (fk_id_ciudad) REFERENCES ciudades(id_ciudad),
+                    FOREIGN KEY (fk_id_asunto) REFERENCES asuntos(id_asunto)
+                );
+
+                 CREATE TABLE IF NOT EXISTS mensajes (
                     id_mensaje INT AUTO_INCREMENT PRIMARY KEY,
                     mensaje TEXT NOT NULL,
                     fk_id_usuario INT,
@@ -70,18 +83,6 @@ const connection = mySql.createConnection(
                     FOREIGN KEY (fk_id_asunto) REFERENCES asuntos(id_asunto),
                     FOREIGN KEY (fk_id_ciudad) REFERENCES ciudades(id_ciudad)
                 ); 
-                
-                CREATE TABLE IF NOT EXISTS contactos (
-                    id_contacto INT AUTO_INCREMENT PRIMARY KEY,
-                    asunto VARCHAR(255) NOT NULL,
-                    nombre VARCHAR(255) NOT NULL,
-                    fk_id_ciudad INT,
-                    email VARCHAR(255) NOT NULL UNIQUE,
-                    mensaje TEXT NOT NULL,
-                    acepta BOOLEAN NOT NULL,
-                    creado DATETIME DEFAULT CURRENT_TIMESTAMP,
-                    FOREIGN KEY (fk_id_ciudad) REFERENCES ciudades(id_ciudad)
-                );
 
             `;
 
