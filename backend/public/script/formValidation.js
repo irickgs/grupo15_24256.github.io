@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Recoger datos del formulario
         const formData = new FormData(crearUsuarioForm);
         const data = {
-            id_asunto: formData.get('id_asunto'),
+            fk_id_asunto: formData.get('fk_id_asunto'),
             nombre: formData.get('nombre'),
             fk_id_ciudad: formData.get('fk_id_ciudad'),
             email: formData.get('email'),
