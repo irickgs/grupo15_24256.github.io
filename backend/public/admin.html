@@ -1,51 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administrador</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script/adminScript.js" defer></script>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2>Panel de Administrador</h2>
-        <!-- Formulario para Crear -->
-        <form id="formCrear">
-            <h3>Crear Contacto</h3>
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required>
+    <div class="container">
+        <h1 class="mt-4">Panel de Administrador</h1>
+        <h2>Crear Contacto</h2>
+        <form id="formCrear" class="mb-4">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" required>
             </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="mensaje" class="form-label">Mensaje:</label>
+                <textarea class="form-control" id="mensaje" required></textarea>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="acepta">
+                <label class="form-check-label" for="acepta">Acepto las condiciones</label>
             </div>
             <button type="submit" class="btn btn-primary">Crear Contacto</button>
         </form>
 
-        <hr>
-
-        <!-- Tabla para Mostrar Contactos -->
-        <h3>Listado de Contactos</h3>
-        <table class="table">
+        <h2>Listado de Contactos</h2>
+        <table id="tablaContactos" class="table">
             <thead>
                 <tr>
                     <th>Nombre</th>
                     <th>Email</th>
                     <th>Acciones</th>
+                    <th>Ver Mensajes</th>
                 </tr>
             </thead>
-            <tbody id="tablaContactos">
-                <!-- Aquí se llenará dinámicamente con JavaScript -->
+            <tbody>
+                <!-- Los contactos se llenarán aquí -->
             </tbody>
         </table>
-    </div>
 
-    <!-- Bootstrap JS y nuestro script personalizado -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="./script/adminScript.js"></script>
+        <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditarLabel">Editar Contacto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditar">
+                            <input type="hidden" id="contactoId">
+                            <div class="mb-3">
+                                <label for="nombreEditar" class="form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="nombreEditar" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="emailEditar" class="form-label">Email:</label>
+                                <input type="email" class="form-control" id="emailEditar" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Actualizar Contacto</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
